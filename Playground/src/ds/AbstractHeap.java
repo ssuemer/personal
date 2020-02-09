@@ -43,6 +43,9 @@ public abstract class AbstractHeap<T extends Comparable<T>> {
 	}
 	
 	protected void swap(int i,int j) {
+		if (i < 0 || j < 0 || i >= heap.size() || j >= heap.size()) {
+			throw new IllegalArgumentException();
+		}
 		T temp = heap.get(i);
 		heap.set(i, heap.get(j));
 		heap.set(j, temp);

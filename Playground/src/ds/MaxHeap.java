@@ -17,8 +17,10 @@ public class MaxHeap<T extends Comparable<T>> extends AbstractHeap<T> {
 			if (rightIndex(index) < heap.size() && heap.get(rightIndex(index)).compareTo(heap.get(max)) > 0) {
 				max = rightIndex(index);
 			}
-			swap(index,max);
-			siftdown(max);
+			if (heap.get(max).compareTo(heap.get(index)) > 0) {
+				swap(index,max);
+				siftdown(max);
+			}
 		}
 	}
 }
