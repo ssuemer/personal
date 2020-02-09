@@ -23,6 +23,11 @@ public class AdvancedSorts{
 		}
 	}
 	
+	public static <T extends Comparable<T>> void bottomUpMergeSort(T[] array) {
+		
+		
+	}
+	
 	private static <T extends Comparable<T>> void mergeSortRecursive(T[] array,int left,int right) {
 		int middle = (left + right) / 2;
 		if (left < right) {
@@ -33,35 +38,30 @@ public class AdvancedSorts{
 	}
 	
 	private static <T extends Comparable<T>> void merge(T[] array,int left,int middle,int right) {
-		T[] helper = array.clone();
-		int i = 0;
+		T[] help = array.clone();
+		int i = left;
 		int j = middle + 1;
 		int k = 0;
 		while (i <= middle && j <= right) {
 			if (array[i].compareTo(array[j]) < 0) {
-				helper[k++] = array[i++];
+				help[k++] = array[i++];
 			} else {
-				helper[k++] = array[j++];
+				help[k++] = array[j++];
 			}
 		}
 		
 		while (i <= middle) {
-			helper[k++] = array[i++];
+			help[k++] = array[i++];
 		}
 		
 		while (j <= right) {
-			helper[k++] = array[j++];
+			help[k++] = array[j++];
 		}
 		
-		for (int x = left; x <= right; x++) {
-			array[x] = helper[x - left];
+		for (int index = left; index <= right; index++) {
+			array[index] = help[index - left];
 		}
 	}
-	
-	
-	
-	
-	
 	
 	// auxiliary method for <code>heapSort<code> and <code>heapify<code>
 	private static <T extends Comparable<T>> void siftdown(T[] heaparray,int heapsize,int index) {
