@@ -24,8 +24,40 @@ public class AdvancedSorts{
 	}
 	
 	public static <T extends Comparable<T>> void bottomUpMergeSort(T[] array) {
-		
-		
+		int length = 1;
+		while (length < array.length) {
+			int right = -1;
+			while (right + length < array.length) {
+				int left = right + 1;
+				int middle = left + length - 1;
+				right = Math.min(array.length - 1, middle + length);
+				merge(array,left,middle,right);
+			}
+			length *= 2;
+		}
+	}
+	
+	public static <T extends Comparable<T>> void naturalMergeSort(T[] array) {
+		int left = 0;
+		do {
+			int right = -1;
+			while (right < array.length - 1) {
+				left = right + 1;
+				int middle = left;
+				while (middle < array.length - 1 && array[middle + 1].compareTo(array[middle]) >= 0) {
+					middle++;
+				}
+				if (middle < array.length - 1) {
+					right = middle + 1;
+					while (right < array.length - 1 && array[right + 1].compareTo(array[right]) >= 0) {
+						right++;
+					}
+					merge(array,left,middle,right);
+				} else {
+					right = array.length - 1;
+				}
+			}
+		} while (left > 0);
 	}
 	
 	private static <T extends Comparable<T>> void mergeSortRecursive(T[] array,int left,int right) {
