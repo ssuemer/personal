@@ -60,6 +60,37 @@ public class AdvancedSorts{
 		} while (left > 0);
 	}
 	
+	public static <T extends Comparable<T>> void quickSort(T[] array) {
+		quickSort(array,0,array.length - 1);
+	}
+	
+	private static <T extends Comparable<T>> void quickSort(T[] array,int left,int right) {
+		if (left < right) {
+			int k = partition(array,left,right);
+			quickSort(array,left,k - 1);
+			quickSort(array,k + 1,right);
+		}
+	}
+	
+	private static <T extends Comparable<T>> int partition(T[] array,int left,int right) {
+		T piv = array[right];
+		int i = left;
+		int j = right - 1;
+		do {
+			while (array[i].compareTo(piv) < 0) {
+				i++;
+			}
+			while (j > left && array[j].compareTo(piv) > 0) {
+				j--;
+			}
+			if (i < j) {
+				swap(i, j, array);
+			}
+		} while (i < j);
+		swap(i,right,array);
+		return i;
+	}
+	
 	private static <T extends Comparable<T>> void mergeSortRecursive(T[] array,int left,int right) {
 		int middle = (left + right) / 2;
 		if (left < right) {
@@ -85,7 +116,7 @@ public class AdvancedSorts{
 		while (i <= middle) {
 			help[k++] = array[i++];
 		}
-		
+	
 		while (j <= right) {
 			help[k++] = array[j++];
 		}
@@ -128,6 +159,12 @@ public class AdvancedSorts{
 		if (heapsize > array.length || i < 0 || j < 0 || i >= heapsize || j >= heapsize) {
 			throw new IllegalArgumentException();
 		}
+		T temp = array[i];
+		array[i] = array[j];
+		array[j] = temp;
+	}
+	
+	private static <T extends Comparable<T>> void swap(int i,int j,T[] array) {
 		T temp = array[i];
 		array[i] = array[j];
 		array[j] = temp;
