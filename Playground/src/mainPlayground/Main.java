@@ -1,18 +1,19 @@
 package mainPlayground;
 
+import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.util.LinkedList;
 
-import sorts.AdvancedSorts;
-import sorts.PrimitiveSorts;
+import graphstuff.GraphReader;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub
-		Integer[] arr = {3,2,1,4,0,-1};
-		AdvancedSorts.<Integer>quickSort(arr);
-		PrimitiveSorts.bubbleSort((arr));
-		System.out.println(Arrays.toString(arr));
-	}
+		LinkedList<Integer>[] adjlist = GraphReader.readIntoList("files\\graph.txt");
+		for (LinkedList<Integer> linkedList : adjlist) {
+			System.out.println(linkedList.toString());
+		}
+	}	
 }
 
