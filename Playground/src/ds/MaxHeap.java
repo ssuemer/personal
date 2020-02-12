@@ -1,6 +1,6 @@
 package ds;
 
-public class MaxHeap<T extends Comparable<T>> extends AbstractHeap<T> {
+public class MaxHeap <T extends Comparable<T>> extends AbstractHeap<T> {
 	
 	@Override
 	protected void siftup(int index) {
