@@ -19,11 +19,12 @@ class Main {
 	}
 	
 	public static void read_and_solve(String path) throws FileNotFoundException {
+		System.out.println(path);
 		Scanner scanner = new Scanner(new File("C:\\Users\\asus\\git\\personal\\Playground\\src\\hcpractice\\input\\" + path + ".in"));
 		int M = scanner.nextInt();
 		int N = scanner.nextInt();
-		int[] pizzaslices = new int[N];
-		for (int i = 0; i < pizzaslices.length; i++) {
+		int[] pizzaslices = new int[N + 1];
+		for (int i = 1; i < pizzaslices.length; i++) {
 			pizzaslices[i] = scanner.nextInt();
 		}
 		scanner.close();
@@ -34,11 +35,8 @@ class Main {
 		}
 		
 		for (int j = 1; j < DP[0].length; j++) {
-			for (int i = 0; i < DP.length; i++) {
-				if (i == 0) {
-					continue;
-				}
-				if (pizzaslices[i - 1] > j) {
+			for (int i = 1; i < DP.length; i++) {
+				if (pizzaslices[i] > j) {
 					DP[i][j] = DP[i - 1][j];
 				} else {
 					DP[i][j] = DP[i - 1][j] || DP[i - 1][j - pizzaslices[i]];
@@ -46,17 +44,12 @@ class Main {
 			}
 		}
 		
-		int x = 0;
+		int x = N;
 		int y = 0;
 		
-		outerloop:
 		for (int j = M; j >= 0; j--) {
-			for (int i = N; i >= 0; i--) {
-				if (DP[i][j]) {
-					x = i;
-					y = j;
-					break outerloop;
-				}
+			if (DP[N][j]) {
+				y = j;
 			}
 		}
 		
@@ -74,12 +67,14 @@ class Main {
 		
 		Collections.sort(pizzaschosen);
 		
-		File output = new File("output\\" + path + "_out");
+		File output = new File("C:\\Users\\asus\\git\\personal\\Playground\\src\\hcpractice\\output\\" + path + "_out");
 		PrintStream printer = new PrintStream(output);
-		printer.println(pizzaschosen);
-		printer.print(pizzaschosen.get(0));
-		for (int ind = 1; ind < pizzaschosen.size(); ind++) {
-			printer.print(" " + pizzaschosen.get(ind));
+		printer.println(pizzaschosen.size());
+		if (pizzaschosen.size() > 0) {
+			printer.print(pizzaschosen.get(0));
+			for (int ind = 1; ind < pizzaschosen.size(); ind++) {
+				printer.print(" " + pizzaschosen.get(ind));
+			}
 		}
 		printer.close();
 	}
