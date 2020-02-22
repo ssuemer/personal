@@ -1,10 +1,10 @@
-package ds;
+	package ds;
 
 public class Queue<T> {
 	private LLNode<T> first,last;
 	private int size;
 	
-	void enqueue(T value) {
+	public void enqueue(T value) {
 		LLNode<T> toAdd = new LLNode<T>(value);
 		if (isEmpty()) {
 			first = last = toAdd;
@@ -15,7 +15,7 @@ public class Queue<T> {
 		size++;
 	}
 	
-	T dequeue() {
+	public T dequeue() {
 		if (isEmpty()) {
 			throw new IllegalStateException();
 		} else {
@@ -26,7 +26,7 @@ public class Queue<T> {
 		}
 	}
 	
-	boolean isEmpty() {
+	public boolean isEmpty() {
 		return size == 0;
 	}
 }
