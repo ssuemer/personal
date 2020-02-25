@@ -7,20 +7,17 @@ import java.util.Scanner;
 
 public class Reader{
 	
-	public static List<Integer>[] readIntoListU(String path) throws FileNotFoundException{
+	public static List<Integer>[] readIntoListU(String path) throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File(path));
 		int n = scanner.nextInt();
 		@SuppressWarnings("unchecked")
 		List<Integer>[] adj = new LinkedList[n];
-		for (int i = 0; i < n; i++) {
+		for (int i = 0; i < adj.length; i++) {
+			adj[i] = new LinkedList<Integer>();
+		}
+		while (scanner.hasNextInt()) {
 			int u = scanner.nextInt();
 			int v = scanner.nextInt();
-			if (adj[u] == null) {
-				adj[u] = new LinkedList<Integer>();
-			}
-			if (adj[v] == null) {
-				adj[v] = new LinkedList<Integer>();
-			}
 			adj[u].add(v);
 			adj[v].add(u);
 		}
