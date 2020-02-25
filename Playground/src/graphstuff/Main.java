@@ -8,7 +8,7 @@ public class Main {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub
-		List<Integer>[] adj = Reader.readIntoListU("files\\artpointtest1.txt");
+		List<Integer>[] adj = Reader.readIntoListU("files\\artpointtestfiles\\artpointtest2.txt");
 		Set<Integer> artpoints = Traversals.findArtsPoints(adj);
 		System.out.println("Cut vertices:");
 		for (Integer integer : artpoints) {
