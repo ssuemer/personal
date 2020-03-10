@@ -55,5 +55,22 @@ public class Traversals {
 		return low[v]; 
 	}
 	
+	public static boolean connected(List<Integer>[] adj) {
+		dfs = new int[adj.length];
+		num = 0;
+		DFSVisit(adj,1);
+		return num == adj.length;
+	}
+	
+	// standard DFS-Visit
+	private static void DFSVisit(List<Integer>[] adj,int s) {
+		dfs[s] = ++num;
+		for (Integer v : adj[s]) {
+			if (dfs[v] == 0) {
+				DFSVisit(adj,v);
+			}
+		}
+	}
+	
 	
 }

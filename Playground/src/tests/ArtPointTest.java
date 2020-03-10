@@ -1,6 +1,8 @@
 package tests;
 
-import static org.junit.Assume.assumeTrue;
+
+
+import static org.junit.Assert.assertTrue;
 
 import java.io.FileNotFoundException;
 import java.util.Arrays;
@@ -16,20 +18,32 @@ class ArtPointTest {
 
 	@Test
 	void testEmptyGraph() throws FileNotFoundException {
-		assumeTrue(readAndProcess("emptygraph.txt").isEmpty());
+		assertTrue(readAndProcess("emptygraph.txt").isEmpty());
 	}
 	
 	@Test
 	void unconnected() throws FileNotFoundException {
-		assumeTrue(readAndProcess("unconnected1.txt").isEmpty());
-		assumeTrue(readAndProcess("unconnected2.txt").isEmpty());
+		assertTrue(readAndProcess("unconnected1.txt").isEmpty());
+		assertTrue(readAndProcess("unconnected2.txt").isEmpty());
 	}
 	
 	@Test
-	void generic() throws FileNotFoundException {
-		assumeTrue(readAndProcess("artpointtest1.txt").equals(new HashSet<Integer>(Arrays.asList(2))));
-		assumeTrue(readAndProcess("artpointtest2.txt").isEmpty());
-		assumeTrue(readAndProcess("artpointtest3.txt").equals(new HashSet<Integer>(Arrays.asList(2,5,8,9))));
+	void generictestset1() throws FileNotFoundException {
+		assertTrue(readAndProcess("artpointtest1.txt").equals(new HashSet<Integer>(Arrays.asList(2))));
+		assertTrue(readAndProcess("artpointtest2.txt").isEmpty());
+		assertTrue(readAndProcess("artpointtest3.txt").equals(new HashSet<Integer>(Arrays.asList(2,5,8,9))));
+	}
+	
+	@Test
+	void generictestset2() throws FileNotFoundException {
+		assertTrue(readAndProcess("simpletree.txt").equals(new HashSet<Integer>(Arrays.asList(0,1,4,6))));
+		assertTrue(readAndProcess("artpointtest4.txt").equals(new HashSet<Integer>(Arrays.asList(1))));
+	}
+	
+	@Test
+	void complete() throws FileNotFoundException {
+		assertTrue(readAndProcess("complete4.txt").isEmpty());
+		assertTrue(readAndProcess("complete6.txt").isEmpty());
 	}
 	
 	String getFilesPath(String filename) {
