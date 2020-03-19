@@ -52,7 +52,7 @@ class ArtPointTest {
 	
 	Set<Integer> readAndProcess(String filename) throws FileNotFoundException {
 		List<Integer>[] adj = Reader.readIntoListU(getFilesPath(filename));
-		return Traversals.findArtsPoints(adj);
+		return Traversals.findArtsPoints(adj,false);
 	}
 
 }

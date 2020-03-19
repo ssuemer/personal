@@ -15,7 +15,7 @@ public class Traversals {
 	private static List<Integer>[] dfstree;
 	
 	@SuppressWarnings("unchecked")
-	public static Set<Integer> findArtsPoints(List<Integer>[] adj) {
+	public static Set<Integer> findArtsPoints(List<Integer>[] adj,boolean componentsallowed) {
 		arts = new HashSet<Integer>();
 		dfs = new int[adj.length];
 		low = new int[adj.length];
@@ -24,16 +24,30 @@ public class Traversals {
 		for (int i = 0; i < dfstree.length; i++) {
 			dfstree[i] = new LinkedList<Integer>();
 		}
-		DFSArt(adj,0); // start at vertex
-		if (dfstree[0].size() >= 2) {
-			arts.add(0);
-		} else {
-			arts.remove(0);
+		if (!componentsallowed) {
+			DFSArt(adj,0); // start at vertex
+			if (dfstree[0].size() >= 2) {
+				arts.add(0);
+			} else {
+				arts.remove(0);
+			}
+			if (num != adj.length) {
+				arts.clear();
+			}
+			return arts;
+		} else { // if graph isn't connected,find "local" cut vertices
+			for (int i = 0; i < dfs.length; i++) {
+				if (dfs[i] == 0) {
+					DFSArt(adj,i);
+					if (dfstree[i].size() >= 2) {
+						arts.add(i);
+					} else {
+						arts.remove(i);
+					}
+				}
+			}
+			return arts;
 		}
-		if (num != adj.length) {
-			arts.clear();
-		}
-		return arts;
 	}
 
 	private static int DFSArt(List<Integer>[] adj, int v) {
