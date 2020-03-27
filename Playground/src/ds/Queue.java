@@ -1,4 +1,4 @@
-	package ds;
+package ds;
 
 public class Queue<T> {
 	private LLNode<T> first,last;
