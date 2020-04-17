@@ -1,6 +1,6 @@
 package graphtheorytests;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,66 +14,36 @@ import org.junit.jupiter.api.Test;
 import graphtheory.Components;
 import graphtheory.Reader;
 
-// to fix
+
 class ComponentsTest {
 
 	@Test
-	void testartpointfiles() throws FileNotFoundException {
-		assertTrue(readAndProcess("artpointtest1"));
-		assertTrue(readAndProcess("artpointtest2"));
-		assertTrue(readAndProcess("artpointtest3"));
-		assertTrue(readAndProcess("artpointtest4"));
-	}
-	
-	@Test
-	void testcomplete() throws FileNotFoundException {
-		assertTrue(readAndProcess("complete4"));
-		assertTrue(readAndProcess("complete6"));
-	}
-	
-	@Test
-	void testcustom() throws FileNotFoundException {
-		assertTrue(readAndProcess("custompath"));
-		assertTrue(readAndProcess("disconnectedarts"));
-	}
-	
-	private boolean readAndProcess(String path) throws FileNotFoundException {
-		LinkedList<Integer>[] adj = Reader.readIntoListU("files\\" + path + ".txt");
-		ArrayList<HashSet<Integer>> components = Components.get(adj);
-		Scanner outreader = new Scanner(new File("componentsoutfiles\\" + path + "out.txt"));
-		Scanner line;
-		boolean[] used = new boolean[components.size()];
-		int count = 0;
-		while (outreader.hasNextLine()) {
-			line = new Scanner(outreader.nextLine());
-			int first = line.nextInt();
-			count++;
-			int component = -1;
-			for (int i = 0; i < components.size(); i++) {
-				if (components.get(i).contains(first)) {
-					component = i;
-					break;
+	void test() throws FileNotFoundException {
+		Scanner out = new Scanner(new File("out\\componentsout.txt"));
+		int i = 0;
+		while (out.hasNextLine()) {
+			Scanner line = new Scanner(out.nextLine());
+			ArrayList<HashSet<Integer>> expected = new ArrayList<HashSet<Integer>>();
+			while (line.hasNext()) {
+				HashSet<Integer> component = new HashSet<Integer>();
+				while (line.hasNextInt()) {
+					component.add(line.nextInt());
 				}
-			}
-			
-			if (component == -1 || used[component]) {
-				line.close();
-				return false;
-			}
-			
-			while (line.hasNextInt()) {
-				count++;
-				if (!components.get(component).contains(line.nextInt())) {
-					line.close();
-					return false;
+				if (line.hasNext()) {
+					line.next();
 				}
+				expected.add(component);
 			}
-			used[component] = true;
 			line.close();
+			assertEquals(expected,readAndProcess(i),"Graph number " + i + " failed.");
+			i++;
 		}
-		outreader.close();
-		
-		return count == adj.length;
+		out.close();
+	}
+	
+	private ArrayList<HashSet<Integer>> readAndProcess(int num) throws FileNotFoundException {
+		LinkedList<Integer>[] adj = Reader.readIntoListU("graphs\\" + num + ".txt");
+		return Components.get(adj);
 	}
 
 }

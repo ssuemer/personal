@@ -1,15 +1,17 @@
 package mainPlayground;
 
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 
-import graphtheory.ArtPoint;
-import graphtheory.Reader;
+import sorts.PrimitiveSorts;
 
 public class Main {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub
-		System.out.println(ArtPoint.findArtsPoints(Reader.readIntoListU("files\\exdebug.txt"),true));
+		Integer[] arr = new Integer[] {1,2,6,3,4};
+		PrimitiveSorts.bubbleSort(arr);
+		System.out.println(Arrays.toString(arr));
 	}
 }
 

@@ -2,12 +2,12 @@ package sorts;
 
 public class PrimitiveSorts {
 	
-	public static <T extends Comparable<T>> void bubbleSort(T[] array) {
-		for (int i = 0; i < array.length - 1; i++) {
+	public static <T extends Comparable<T>> void bubbleSort(T[] arr) {
+		for (int i = 0; i < arr.length - 1; i++) {
 			boolean noswaps = true;
-			for (int j = 0; j < array.length - 1 - i; j++) {
-				if (array[j + 1].compareTo(array[j]) < 0) {
-					swap(j,j + 1,array);
+			for (int j = 0; j < arr.length - 1 - i; j++) {
+				if (arr[j + 1].compareTo(arr[j]) < 0) {
+					swap(j,j + 1,arr);
 					noswaps = false;
 				}
 			}

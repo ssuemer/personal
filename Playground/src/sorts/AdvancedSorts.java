@@ -1,5 +1,7 @@
 package sorts;
 
+import java.util.Random;
+
 public class AdvancedSorts{
 	
 	public static <T extends Comparable<T>> void heapSort(T[] array) {
@@ -66,13 +68,15 @@ public class AdvancedSorts{
 	
 	private static <T extends Comparable<T>> void quickSort(T[] array,int left,int right) {
 		if (left < right) {
-			int k = partition(array,left,right);
+			int pivot = (new Random()).nextInt(right - left + 1) + left;
+			int k = partition(array,left,right,pivot);
 			quickSort(array,left,k - 1);
 			quickSort(array,k + 1,right);
 		}
 	}
 	
-	private static <T extends Comparable<T>> int partition(T[] array,int left,int right) {
+	private static <T extends Comparable<T>> int partition(T[] array,int left,int right,int p) {
+		swap(p,right,array);
 		T piv = array[right];
 		int i = left;
 		int j = right - 1;
