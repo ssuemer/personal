@@ -4,6 +4,8 @@ import java.util.Random;
 
 public class AdvancedSorts{
 	
+	private static Random randomgen = new Random();
+	
 	public static <T extends Comparable<T>> void heapSort(T[] array) {
 		int heapsize = array.length;
 		heapify(array,heapsize);
@@ -66,9 +68,28 @@ public class AdvancedSorts{
 		quickSort(array,0,array.length - 1);
 	}
 	
+	public static <T extends Comparable<T>> T quickSelect(T[] array,int k) {
+		if (k >= array.length || k < 0) {
+			throw new IllegalArgumentException();
+		}
+		return quickSelect(array,0,array.length - 1,k);
+	}
+	
+	private static <T extends Comparable<T>> T quickSelect(T[] array,int left,int right,int k) {
+		int p = randrange(left, right);
+		int t = partition(array,left,right,p);
+		if (k == t) {
+			return array[t];
+		} else if (k < t) {
+			return quickSelect(array,left,t - 1,k);
+		} else {
+			return quickSelect(array,t + 1,right,k);
+		}
+	}
+	
 	private static <T extends Comparable<T>> void quickSort(T[] array,int left,int right) {
 		if (left < right) {
-			int pivot = (new Random()).nextInt(right - left + 1) + left;
+			int pivot = randrange(left,right);
 			int k = partition(array,left,right,pivot);
 			quickSort(array,left,k - 1);
 			quickSort(array,k + 1,right);
@@ -93,6 +114,13 @@ public class AdvancedSorts{
 		} while (i < j);
 		swap(i,right,array);
 		return i;
+	}
+	
+	public static int randrange(int left,int right) {
+		if (left > right) {
+			throw new IllegalArgumentException("Left border can not be larger!");
+		}
+		return randomgen.nextInt(right - left + 1) + left;
 	}
 	
 	private static <T extends Comparable<T>> void mergeSortRecursive(T[] array,int left,int right) {
