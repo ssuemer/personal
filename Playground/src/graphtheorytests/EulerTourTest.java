@@ -20,14 +20,14 @@ class EulerTourTest {
 	@Test
 	void simpleGeneric() throws FileNotFoundException {
 		for (int i = 0; i < 8; i++) {
-			List<Integer>[] adj = Reader.readIntoListU("files\\eulertourtest" + (i + 1) + ".txt");
+			LinkedList<Integer>[] adj = Reader.readIntoListU("files\\eulertourtest" + (i + 1) + ".txt");
 			assertTrue(verifyTour(adj,EulerTour.find(adj)));
 		}
 	}
 	
 	
 	
-	private static boolean verifyTour(List<Integer>[] adj,LinkedList<Integer> result) {
+	private static boolean verifyTour(LinkedList<Integer>[] adj,LinkedList<Integer> result) {
 		int E = 0;
 		for (List<Integer> nbourhood : adj) {
 			E += nbourhood.size();
