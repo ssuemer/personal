@@ -3,15 +3,17 @@ package mainPlayground;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
 
-import graphtheory.Components;
+import graphtheory.LongPath;
 import graphtheory.Reader;
 
 public class Main {
-
+	
 	public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub
-		LinkedList<Integer>[] adj = Reader.readIntoListU("graphs\\7.txt");
-		System.out.println(Components.get(adj));
+		LinkedList<Integer>[] adj = Reader.readIntoListU("graphs\\15.txt");
+		System.out.println(LongPath.find(adj,10,0.01));
 	}
+	
+	
 }
 

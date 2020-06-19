@@ -48,7 +48,11 @@ public class PrimitiveSorts {
 		array[j] = temp;
 	}
 	
-	public static <T extends Comparable<T>> int binarySearch(T[] array,T value,int left,int right) {
+	public static <T extends Comparable<T>> int binarySearch(T[] array,T value) {
+		return binarySearch(array,value,0,array.length - 1);
+	}
+	
+	private static <T extends Comparable<T>> int binarySearch(T[] array,T value,int left,int right) {
 		int middle = (left + right) / 2;
 		
 		while (left < right) {
