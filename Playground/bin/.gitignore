@@ -1,2 +1,14 @@
+<<<<<<< HEAD
 /graphtheory/
 /graphtheorytests/
+=======
+/ds/
+/dstests/
+/graphtheory/
+/graphtheorytests/
+/mainPlayground/
+/probability/
+/probabilitytests/
+/sorts/
+/sortstests/
+>>>>>>> branch 'master' of https://github.com/Surpi5/personal.git
