@@ -33,6 +33,9 @@ class NetworkTest {
 			boolean solved = solvesantaclaus(in);
 			assertTrue((res.equals("yes") && solved) || (res.equals("no") && !solved),"Test case " + i + " failed");
 		}
+		
+		in.close();
+		out.close();
 	}
 	
 	@Test
@@ -46,6 +49,8 @@ class NetworkTest {
 			boolean solved = solvesustainthelifeforce(in);
 			assertTrue((res.equals("yes") && solved) || (res.equals("no") && !solved),"Test case " + i + " failed");
 		}
+		in.close();
+		out.close();
 	}
 	
 	@Test
@@ -59,8 +64,64 @@ class NetworkTest {
 			int solved = (int) solvebicycleauction(in);
 			assertEquals(res,solved,"Test case " + i + " failed");
 		}
+		
+		in.close();
+		out.close();
 	}
 	
+	@Test
+	void buylowsellhigh() throws FileNotFoundException {
+		Scanner in = new Scanner(new File("networks\\buylowsellhighin.txt"));
+		Scanner out = new Scanner(new File("networksout\\buylowsellhighout.txt"));
+		
+		int t = in.nextInt();
+		for (int i = 0; i < t; i++) {
+			int res = out.nextInt();
+			int solved = solvebuylowsellhigh(in);
+			assertEquals(res,solved,"Test case " + i + " failed");
+		}
+		
+		in.close();
+		out.close();
+	}
+	
+	private int solvebuylowsellhigh(Scanner in) {
+		// TODO Auto-generated method stub
+		final int INF = 10001;
+        int n = in.nextInt();
+        int m = in.nextInt();
+        
+        Network G = new Network(n);
+
+        int s = 0, t = n - 1;
+        int fragile = 0;
+        for (int i = 0; i < m; i++) {
+            int u = in.nextInt();
+            int v = in.nextInt();
+
+            int c = in.nextInt();
+            if (c == 1) { // We can only use wooden bridges once
+                fragile++;
+                G.addEdge(u, v, 1);
+                G.addEdge(v, u, 1);
+            } else { // 
+                G.addEdge(u, v, INF);
+                G.addEdge(v, u, INF);
+            }
+        }
+
+        int flow = (int) G.computeMaximumFlow(s, t);
+        if (flow > fragile) {
+            // The only way to get more flow than wooden bridges, is if there
+            // is a path that uses only brick bridges between s and t.
+            return -1;
+        } else {
+            // We have to go back and forth, so we divide the total # of paths over 2
+            return flow / 2; 
+        }
+	}
+
+
 	private double solvebicycleauction(Scanner in) {
 		// TODO Auto-generated method stub
         int c = in.nextInt();
