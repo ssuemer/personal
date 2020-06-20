@@ -1,6 +1,7 @@
 package graphtheory;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -22,5 +23,18 @@ public class Reader{
 		}
 		scanner.close();
 		return adj;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static LinkedList<Integer>[] cloneadj (LinkedList<Integer>[] adj) {
+		LinkedList<Integer>[] cloned = new LinkedList[adj.length];
+		for (int i = 0; i < adj.length; i++) {
+			if (adj[i] == null) {
+				cloned[i] = null;
+			} else {
+				cloned[i] = (LinkedList<Integer>) adj[i].clone();
+			}
+		}
+		return cloned;
 	}
 }
