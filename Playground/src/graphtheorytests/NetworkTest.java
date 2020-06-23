@@ -24,8 +24,8 @@ class NetworkTest {
 	
 	@Test
 	void santaclaus() throws FileNotFoundException {
-		Scanner in = new Scanner(new File("networks\\santaclausin.txt"));
-		Scanner out = new Scanner(new File("networksout\\santaclausout.txt"));
+		Scanner in = new Scanner(new File("in\\santaclausin.txt"));
+		Scanner out = new Scanner(new File("out\\santaclausout.txt"));
 		
 		int t = in.nextInt();
 		for (int i = 0; i < t; i++) {
@@ -40,8 +40,8 @@ class NetworkTest {
 	
 	@Test
 	void sustainthelifeforce() throws FileNotFoundException {
-		Scanner in = new Scanner(new File("networks\\sustainthelifeforcein.txt"));
-		Scanner out = new Scanner(new File("networksout\\sustainthelifeforceout.txt"));
+		Scanner in = new Scanner(new File("in\\sustainthelifeforcein.txt"));
+		Scanner out = new Scanner(new File("out\\sustainthelifeforceout.txt"));
 		
 		int t = in.nextInt();
 		for (int i = 0; i < t; i++) {
@@ -55,8 +55,8 @@ class NetworkTest {
 	
 	@Test
 	void bicycleauction() throws FileNotFoundException {
-		Scanner in = new Scanner(new File("networks\\bicycleauctionin.txt"));
-		Scanner out = new Scanner(new File("networksout\\bicycleauctionout.txt"));
+		Scanner in = new Scanner(new File("in\\bicycleauctionin.txt"));
+		Scanner out = new Scanner(new File("out\\bicycleauctionout.txt"));
 		
 		int t = in.nextInt();
 		for (int i = 0; i < t; i++) {
@@ -71,8 +71,8 @@ class NetworkTest {
 	
 	@Test
 	void buylowsellhigh() throws FileNotFoundException {
-		Scanner in = new Scanner(new File("networks\\buylowsellhighin.txt"));
-		Scanner out = new Scanner(new File("networksout\\buylowsellhighout.txt"));
+		Scanner in = new Scanner(new File("in\\buylowsellhighin.txt"));
+		Scanner out = new Scanner(new File("out\\buylowsellhighout.txt"));
 		
 		int t = in.nextInt();
 		for (int i = 0; i < t; i++) {

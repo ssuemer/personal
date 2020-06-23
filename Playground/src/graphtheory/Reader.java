@@ -1,7 +1,6 @@
 package graphtheory;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -36,5 +35,45 @@ public class Reader{
 			}
 		}
 		return cloned;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static LinkedList<Integer>[] completegraph(int n) {
+		LinkedList<Integer>[] res = new LinkedList[n];
+		for (int i = 0; i < res.length; i++) {
+			res[i] = new LinkedList<Integer>();
+		}
+		
+		for (int i = 0; i < res.length; i++) {
+			for (int j = 0; j < res.length; j++) {
+				if (i != j) {
+					res[i].add(j);
+				}
+			}
+		}
+		
+		return res;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static LinkedList<Integer>[] path(int n) {
+		LinkedList<Integer>[] res = new LinkedList[n];
+		for (int i = 0; i < res.length; i++) {
+			res[i] = new LinkedList<Integer>();
+			if (i < res.length - 1) {
+				res[i].add(i + 1);
+			}
+			if (i > 0) {
+				res[i].add(i - 1);
+			}
+		}
+		return res;
+	}
+	
+	public static LinkedList<Integer>[] cycle(int n) {
+		LinkedList<Integer>[] res = path(n);
+		res[n - 1].add(0);
+		res[0].add(n - 1);
+		return res;
 	}
 }
