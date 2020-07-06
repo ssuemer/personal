@@ -18,18 +18,32 @@ import graphtheory.Reader;
 class EulerTourTest {
 
 	@Test
-	void simpleGeneric() throws FileNotFoundException {
-		for (int i = 0; i < 8; i++) {
-			LinkedList<Integer>[] adj = Reader.readIntoListU("files\\eulertourtest" + (i + 1) + ".txt");
+	void simple() throws FileNotFoundException {
+		for (int i = 18; i <= 18; i++) {
+			assertTrue(readAndProcess(i));
+		}
+	}
+	
+	@Test
+	void complete() {
+		for (int i = 3; i <= 151; i += 2) {
+			LinkedList<Integer>[] adj = Reader.completegraph(i);
+			assertTrue(verifyTour(adj,EulerTour.find(adj)));
+		}
+	}
+	
+	@Test
+	void cycle() {
+		for (int i = 3; i <= 10000; i++) {
+			LinkedList<Integer>[] adj = Reader.cycle(i);
 			assertTrue(verifyTour(adj,EulerTour.find(adj)));
 		}
 	}
 	
 	
-	
 	private static boolean verifyTour(LinkedList<Integer>[] adj,LinkedList<Integer> result) {
 		int E = 0;
-		for (List<Integer> nbourhood : adj) {
+		for (LinkedList<Integer> nbourhood : adj) {
 			E += nbourhood.size();
 		}
 		E /= 2;
@@ -37,11 +51,18 @@ class EulerTourTest {
 		for (int i = 0; i < result.size() - 1; i++) {
 			int u = result.get(i);
 			int v = result.get(i + 1);
-			if (!edges.add(new Edge(u,v))) {
+			if (!adj[u].contains(v) || edges.contains(new Edge(u,v))) {
 				return false;
-			} 
+			} else {
+				edges.add(new Edge(u,v));
+			}
 		}
 		return edges.size() == E;
+	}
+	
+	private static boolean readAndProcess(int i) throws FileNotFoundException {
+		LinkedList<Integer>[] adj = Reader.readIntoListU("graphs\\" + i + ".txt");
+		return verifyTour(adj,EulerTour.find(adj));
 	}
 }
 

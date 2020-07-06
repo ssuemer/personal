@@ -13,7 +13,7 @@ class AdvancedSortsTest {
 
 	@Test
 	void testHeapSort() {
-		for (int i = 1; i <= 3000; i++) {
+		for (int i = 1; i <= 1000; i++) {
 			Integer[] toSortAlg = generateRandomArray(i);
 			Integer[] toSortExp = toSortAlg.clone();
 			Arrays.sort(toSortExp);
@@ -24,7 +24,7 @@ class AdvancedSortsTest {
 	
 	@Test
 	void testMergeSortRecursive() {
-		for (int i = 1; i <= 3000; i++) {
+		for (int i = 1; i <= 1000; i++) {
 			Integer[] toSortAlg = generateRandomArray(i);
 			Integer[] toSortExp = toSortAlg.clone();
 			Arrays.sort(toSortExp);
@@ -35,7 +35,7 @@ class AdvancedSortsTest {
 	
 	@Test
 	void testBottomUpMergeSort() {
-		for (int i = 1; i <= 3000; i++) {
+		for (int i = 1; i <= 1000; i++) {
 			Integer[] toSortAlg = generateRandomArray(i);
 			Integer[] toSortExp = toSortAlg.clone();
 			Arrays.sort(toSortExp);
@@ -46,7 +46,7 @@ class AdvancedSortsTest {
 	
 	@Test
 	void testNaturalMergeSort() {
-		for (int i = 1; i <= 3000; i++) {
+		for (int i = 1; i <= 1000; i++) {
 			Integer[] toSortAlg = generateRandomArray(i);
 			Integer[] toSortExp = toSortAlg.clone();
 			Arrays.sort(toSortExp);
@@ -57,7 +57,7 @@ class AdvancedSortsTest {
 	
 	@Test
 	void testQuickSort() {
-		for (int i = 1; i <= 3000; i++) {
+		for (int i = 1; i <= 1000; i++) {
 			Integer[] toSortAlg = generateRandomArray(i);
 			Integer[] toSortExp = toSortAlg.clone();
 			Arrays.sort(toSortExp);

@@ -3,15 +3,20 @@ package mainPlayground;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
 
-import graphtheory.Components;
-import graphtheory.Reader;
-
 public class Main {
-
+	
 	public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub
-		LinkedList<Integer>[] adj = Reader.readIntoListU("graphs\\7.txt");
-		System.out.println(Components.get(adj));
+		LinkedList<Integer> l = new LinkedList<Integer>();
+		l.add(1);
+		l.add(2);
+		LinkedList<Integer> k = new LinkedList<Integer>();
+		k.add(4);
+		k.add(9);
+		l.addAll(1, k);
+		System.out.println(l);
 	}
+	
+	
 }
 
