@@ -1,13 +1,10 @@
 package graphtheorytests;
 
-
-
 import static org.junit.Assert.assertTrue;
 
 import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -34,7 +31,7 @@ class EulerTourTest {
 	
 	@Test
 	void cycle() {
-		for (int i = 3; i <= 10000; i++) {
+		for (int i = 3; i <= 100; i++) {
 			LinkedList<Integer>[] adj = Reader.cycle(i);
 			assertTrue(verifyTour(adj,EulerTour.find(adj)));
 		}

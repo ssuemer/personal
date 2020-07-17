@@ -1,5 +1,6 @@
 package probability;
 
+// Algorithmen und Wahrscheinlichkeit Aufgabe 7 FS20
 public class SecondMomentMethod extends AbstractSimulation {
 	
 	private int n;

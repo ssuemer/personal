@@ -3,6 +3,9 @@ package graphtheory;
 import java.util.LinkedList;
 import java.util.Random;
 
+/*
+ * Algorithmen und Wahrscheinlichkeit Extra Aufgabe 7.2 FS20
+ */
 public class Exploration {
 	
 	LinkedList<Integer>[] adj;

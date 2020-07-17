@@ -7,6 +7,10 @@ import java.util.List;
 
 public class EulerTour {
 	
+	/**
+	 * @param adj Adjacency list of the graph.
+	 * @return A linkedlist representing an arbitrary EulerTour in the graph if it has one,null otherwise.
+	 */
 	public static LinkedList<Integer> find(LinkedList<Integer>[] adj) {
 		
 		adj = Reader.cloneadj(adj);
@@ -37,6 +41,10 @@ public class EulerTour {
 		
 	}
 	
+	/**
+	 * @param adj Adjacency list of the graph.
+	 * @return True if the graph contains an EulerTour,false otherwise.
+	 */
 	private static boolean possible(LinkedList<Integer>[] adj) {
 		boolean flag = false;
 		for (List<Integer> nbd : adj) {

@@ -18,7 +18,7 @@ public class Main {
 				break;
 			}
 		}
-		
+		in.close();
 		ArrayList<Point2D> hull = LocalRepair.getConvexHull(points);
 		System.out.println(hull);
 		System.out.println(JarvisWrap.inHull(new Point2D(2,-2), hull));

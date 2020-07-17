@@ -9,6 +9,11 @@ public class Components {
 	private static boolean[] visited;
 	private static HashSet<Integer> component;
 	
+	/**
+	 * @param adj Adjacency list of the graph.
+	 * @return An arraylist of hashsets s.t. the vertex set is partitioned according to their components (each hashset corresponds
+	 * to one component).
+	 */
 	public static ArrayList<HashSet<Integer>> get(LinkedList<Integer>[] adj) {
 		ArrayList<HashSet<Integer>> components = new ArrayList<HashSet<Integer>>();
 		visited = new boolean[adj.length];

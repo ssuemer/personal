@@ -6,6 +6,15 @@ public class TargetShooting {
 	
 	private static Random randomgen = new Random();
 	
+	/**
+	 * @param error Relative error to pi.
+	 * @param delta Wished probability that return value is atmost error away from pi.
+	 * @return Pi,estimated to an error input by the user.
+	 * 
+	 * @implNote This method calculates pi using the target shooting algorithm.
+	 * Note that this is very inefficient and there are much better ways to calculate pi
+	 * with high precision. 
+	 */
 	public static double getPi(double error,double delta) {
 		if (error < 0) {
 			throw new IllegalArgumentException("Error must be positive");

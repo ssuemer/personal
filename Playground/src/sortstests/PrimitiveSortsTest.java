@@ -1,59 +1,41 @@
 package sortstests;
 
-import static org.junit.Assert.assertArrayEquals;
-
-import java.util.Arrays;
-import java.util.Random;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
 import sorts.PrimitiveSorts;
+import sorts.Tools;
 
 class PrimitiveSortsTest {
-
+	
+	private final int TESTBOUND = 2_000;
+	
 	@Test
 	void testBubbleSort() {
-		for (int i = 1; i <= 1000; i++) {
-			Integer[] toSortAlg = generateRandomArray(i);
-			Integer[] toSortExp = toSortAlg.clone();
-			Arrays.sort(toSortExp);
-			PrimitiveSorts.bubbleSort(toSortAlg);
-			assertArrayEquals(toSortExp, toSortAlg);
+		for (int i = 1; i <= TESTBOUND; i++) {
+			Integer[] toSort = Tools.generateRandomArray(i);
+			PrimitiveSorts.bubbleSort(toSort);
+			assertTrue(Tools.isSorted(toSort));
 		}
 	}
 	
 	@Test
 	void testSelectionSort() {
-		for (int i = 1; i <= 1000; i++) {
-			Integer[] toSortAlg = generateRandomArray(i);
-			Integer[] toSortExp = toSortAlg.clone();
-			Arrays.sort(toSortExp);
-			PrimitiveSorts.selectionSort(toSortAlg);
-			assertArrayEquals(toSortExp, toSortAlg);
+		for (int i = 1; i <= TESTBOUND; i++) {
+			Integer[] toSort = Tools.generateRandomArray(i);
+			PrimitiveSorts.selectionSort(toSort);
+			assertTrue(Tools.isSorted(toSort));
 		}
 	}
 	
 	@Test
 	void testInsertionSort() {
-		for (int i = 1; i <= 1000; i++) {
-			Integer[] toSortAlg = generateRandomArray(i);
-			Integer[] toSortExp = toSortAlg.clone();
-			Arrays.sort(toSortExp);
-			PrimitiveSorts.insertionSort(toSortAlg);
-			assertArrayEquals(toSortExp, toSortAlg);
+		for (int i = 1; i <= TESTBOUND; i++) {
+			Integer[] toSort = Tools.generateRandomArray(i);
+			PrimitiveSorts.insertionSort(toSort);
+			assertTrue(Tools.isSorted(toSort));
 		}
-	}
-	
-	private Integer[] generateRandomArray(int n) {
-		Random randomgen = new Random();
-		Integer[] toReturn = new Integer[n];
-		for (int i = 0; i < toReturn.length; i++) {
-			toReturn[i] = randomgen.nextInt();
-			if (randomgen.nextBoolean()) {
-				toReturn[i] *= -1;
-			}
-		}
-		return toReturn;
 	}
 
 }

@@ -8,6 +8,10 @@ public class DFS {
 	private static String preorder;
 	private static boolean[] visited;
 	
+	/**
+	 * @param adj Adjacency list of the graph.
+	 * @return The preorder DFS traversal of the graph as a string. 
+	 */
 	public static String run(LinkedList<Integer>[] adj) {
 		for (LinkedList<Integer> nborhood : adj) {
 			Collections.sort(nborhood);

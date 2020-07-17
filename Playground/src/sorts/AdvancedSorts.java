@@ -1,11 +1,20 @@
 package sorts;
 
-import java.util.Random;
-
-public class AdvancedSorts{
+/**
+ * 
+ * @author Sarp Suemer 17.07.2020
+ *	Provides sequential advanced sorting algorithms with type arguments.
+ *	Implementing using type arguments is more efficient for large data sets compared to
+ *  using Comparable as type.
+ */
+public class AdvancedSorts {
 	
-	private static Random randomgen = new Random();
-	
+	/**
+	 * @param <T> Type of the elements to sort,must implement Comparable.
+	 * @param array The array to sort,must contain elements of type T.
+	 * 
+	 * @implNote Simple heap sort algorithm,the underlying heap is implemented in an array.
+	 */
 	public static <T extends Comparable<T>> void heapSort(T[] array) {
 		int heapsize = array.length;
 		heapify(array,heapsize);
@@ -16,6 +25,12 @@ public class AdvancedSorts{
 		}
 	}
 	
+	/**
+	 * @param <T> Type of the elements to sort,must implement Comparable.
+	 * @param array The array to sort,must contain elements of type T.
+	 * 
+	 * @implNote Recursive merge sort algorithm.
+	 */
 	public static <T extends Comparable<T>> void mergeSortRecursive(T[] array) {
 		int left = 0;
 		int right = array.length - 1;
@@ -27,6 +42,13 @@ public class AdvancedSorts{
 		}
 	}
 	
+	/**
+	 * @param <T> Type of the elements to sort,must implement Comparable.
+	 * @param array The array to sort,must contain elements of type T.
+	 * 
+	 * @implNote Bottom-up merge sort algorithm,evades the overhead of method
+	 * calls when using the recursive variant.
+	 */
 	public static <T extends Comparable<T>> void bottomUpMergeSort(T[] array) {
 		int length = 1;
 		while (length < array.length) {
@@ -41,6 +63,13 @@ public class AdvancedSorts{
 		}
 	}
 	
+	/**
+	 * @param <T> Type of the elements to sort,must implement Comparable.
+	 * @param array The array to sort,must contain elements of type T.
+	 * 
+	 * @implNote Natural merge sort algorithm.Takes advantage of already sorted
+	 * parts of the array.
+	 */
 	public static <T extends Comparable<T>> void naturalMergeSort(T[] array) {
 		int left = 0;
 		do {
@@ -64,63 +93,23 @@ public class AdvancedSorts{
 		} while (left > 0);
 	}
 	
+	/**
+	 * @param <T> Type of the elements to sort,must implement Comparable.
+	 * @param array The array to sort,must contain elements of type T.
+	 * 
+	 * @implNote Quick sort algorithm with uniform randomly chosen pivot.
+	 */
 	public static <T extends Comparable<T>> void quickSort(T[] array) {
 		quickSort(array,0,array.length - 1);
 	}
-	
-	public static <T extends Comparable<T>> T quickSelect(T[] array,int k) {
-		if (k >= array.length || k < 0) {
-			throw new IllegalArgumentException();
-		}
-		return quickSelect(array,0,array.length - 1,k);
-	}
-	
-	private static <T extends Comparable<T>> T quickSelect(T[] array,int left,int right,int k) {
-		int p = randrange(left, right);
-		int t = partition(array,left,right,p);
-		if (k == t) {
-			return array[t];
-		} else if (k < t) {
-			return quickSelect(array,left,t - 1,k);
-		} else {
-			return quickSelect(array,t + 1,right,k);
-		}
-	}
-	
+
 	private static <T extends Comparable<T>> void quickSort(T[] array,int left,int right) {
 		if (left < right) {
-			int pivot = randrange(left,right);
-			int k = partition(array,left,right,pivot);
+			int pivot = Tools.randrange(left,right);
+			int k = Tools.partition(array,left,right,pivot);
 			quickSort(array,left,k - 1);
 			quickSort(array,k + 1,right);
 		}
-	}
-	
-	private static <T extends Comparable<T>> int partition(T[] array,int left,int right,int p) {
-		swap(p,right,array);
-		T piv = array[right];
-		int i = left;
-		int j = right - 1;
-		do {
-			while (array[i].compareTo(piv) < 0) {
-				i++;
-			}
-			while (j > left && array[j].compareTo(piv) > 0) {
-				j--;
-			}
-			if (i < j) {
-				swap(i, j, array);
-			}
-		} while (i < j);
-		swap(i,right,array);
-		return i;
-	}
-	
-	public static int randrange(int left,int right) {
-		if (left > right) {
-			throw new IllegalArgumentException("Left border can not be larger!");
-		}
-		return randomgen.nextInt(right - left + 1) + left;
 	}
 	
 	private static <T extends Comparable<T>> void mergeSortRecursive(T[] array,int left,int right) {
@@ -132,7 +121,7 @@ public class AdvancedSorts{
 		}
 	}
 	
-	private static <T extends Comparable<T>> void merge(T[] array,int left,int middle,int right) {
+	public static <T extends Comparable<T>> void merge(T[] array,int left,int middle,int right) {
 		T[] help = array.clone();
 		int i = left;
 		int j = middle + 1;
@@ -195,12 +184,4 @@ public class AdvancedSorts{
 		array[i] = array[j];
 		array[j] = temp;
 	}
-	
-	private static <T extends Comparable<T>> void swap(int i,int j,T[] array) {
-		T temp = array[i];
-		array[i] = array[j];
-		array[j] = temp;
-	}
-	
-	
 }

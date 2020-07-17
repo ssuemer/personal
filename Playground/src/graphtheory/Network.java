@@ -4,6 +4,11 @@ import java.util.LinkedList;
 
 import ds.Queue;
 
+/**
+ * @author Sarp Suemer 17.07.2020
+ * @implNote A representation of a network,provides methods to 
+ * compute maximum-flows.
+ */
 public class Network {
 	
 	private int n;
@@ -49,7 +54,27 @@ public class Network {
 		}
 	}
 	
-	// Ford-Fulkerson Algorithm
+	/**
+	 * @param u Vertex at the outgoing part of the edge.
+	 * @param v Vertex at the incoming part of the edge.
+	 * @return Flow value of the edge (u,v),exception if edge not in network.
+	 */
+	public double getFlow(int u,int v) {
+		if (!adj[u].contains(v)) {
+			throw new IllegalArgumentException("Edge u-v not present in the network");
+		} else {
+			return flow[u][v];
+		}
+	}
+	
+	/**
+	 * @param s Source
+	 * @param t Sink
+	 * @return Value of a maximum flow from s to t.
+	 * 
+	 * @implNote One can call the getFlow method to get the flows on edges for a maximum flow,
+	 * right after calling this method.
+	 */
 	@SuppressWarnings("unchecked")
 	public double computeMaximumFlow(int s,int t) {
 		if (s < 0 || s >= n || t < 0 || t >= n) {

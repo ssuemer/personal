@@ -1,5 +1,6 @@
 package probability;
 
+// Simulation der Waldscher Identitaet
 public class Wald extends AbstractSimulation {
 	
 	@Override
