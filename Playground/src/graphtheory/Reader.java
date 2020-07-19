@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class Reader{
+public class Reader {
 	
 	/**
 	 * @param path Path to the file to read the graph from.

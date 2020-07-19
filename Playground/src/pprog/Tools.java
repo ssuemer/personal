@@ -92,14 +92,13 @@ public class Tools {
 	 * code snippet to measure the time 
 	 * it takes for a procedure to finish.
 	 */
-	@SuppressWarnings("unused")
-	private static void timeMeasurement() {
-		long startTime = System.nanoTime();
-		// the code you want to measure time for goes here
-		long endTime = System.nanoTime();
-		long elapsedNs = endTime - startTime;
-		double elapsedMs = elapsedNs / 1.0e6;
-	}
+//	private static void timeMeasurement() {
+//		long startTime = System.nanoTime();
+//		// the code you want to measure time for goes here
+//		long endTime = System.nanoTime();
+//		long elapsedNs = endTime - startTime;
+//		double elapsedMs = elapsedNs / 1.0e6;
+//	}
 	
 	public static ArrayOperation[] createTasks (int[] arr,int numtasks,ArrayOperation.Type type) {
 		ArraySplit[] partition = PartitionData(arr.length, numtasks);

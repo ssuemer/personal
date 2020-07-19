@@ -5,7 +5,8 @@ package sorts;
  * @author Sarp Suemer 17.07.2020
  *	Provides sequential advanced sorting algorithms with type arguments.
  *	Implementing using type arguments is more efficient for large data sets compared to
- *  using Comparable as type.
+ *  using Comparable as type.Quick sort and heap sort are exceptionally faster compared to
+ *  the merge sort variants.
  */
 public class AdvancedSorts {
 	
@@ -121,6 +122,16 @@ public class AdvancedSorts {
 		}
 	}
 	
+	/**
+	 * @param <T> Type of the elements of the array.
+	 * @param array Array to merge elements in.
+	 * @param left Left boundary of merge interval (inclusive)
+	 * @param middle Middle point of the merge interval,also last element of the left merge interval.
+	 * @param right Right boundary of the merge interval (inclusive)
+	 * 
+	 * @implNote Merges the subarray left - middle and middle + 1 - right into one sorted subarray.The two provided subarrays
+	 * must be sorted themselves.
+	 */
 	public static <T extends Comparable<T>> void merge(T[] array,int left,int middle,int right) {
 		T[] help = array.clone();
 		int i = left;

@@ -9,7 +9,7 @@ import sorts.Tools;
 
 class AdvancedSortsTest {
 	
-	private final int TESTBOUND = 4_000;
+	private final int TESTBOUND = 3_000;
 	
 	@Test
 	void testHeapSort() {
