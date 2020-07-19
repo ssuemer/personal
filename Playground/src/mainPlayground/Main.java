@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class Main {
 	
+<<<<<<< HEAD
 	static Random randomgen = new Random();
 	
 	public static void main(String[] args) {
@@ -38,6 +39,11 @@ public class Main {
 		long elapsedNsR = endTimeR - startTimeR;
 		double elapsedMsR = elapsedNsR / 1.0e6;
 		System.out.println("Unrolled: " + elapsedMsR + " ms.");
+=======
+	public static void main(String[] args) throws FileNotFoundException {
+		// TODO Auto-generated method stub
+		System.out.println(Runtime.getRuntime().availableProcessors());
+>>>>>>> branch 'master' of https://github.com/Surpi5/personal.git
 	}
 	
 	public static int[] randomData(int N) {
