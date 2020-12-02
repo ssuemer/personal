@@ -7,7 +7,7 @@ import java.util.Random;
 import org.junit.jupiter.api.Test;
 
 import probability.Median;
-import sorts.AdvancedSorts;
+import sorts.Tools;
 
 class MedianTest {
 
@@ -17,8 +17,8 @@ class MedianTest {
 		Integer[] copy = array.clone();
 		double eps = 0.5;
 		int amount = 333;
-		int k = AdvancedSorts.quickSelect(copy, (int) Math.floor((1 - eps) * copy.length / 2) - 1);
-		int g = AdvancedSorts.quickSelect(copy, (int) Math.ceil((1 + eps) * copy.length / 2) - 1);
+		int k = (int) Tools.quickSelect(copy, (int) Math.floor((1 - eps) * copy.length / 2) - 1);
+		int g = (int) Tools.quickSelect(copy, (int) Math.ceil((1 + eps) * copy.length / 2) - 1);
 		double totalK = 0;
 		double totalG = 0;
 		Median toTest = new Median(array);

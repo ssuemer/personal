@@ -1,8 +1,8 @@
 package mainPlayground;
 
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class Main {
 	
@@ -14,7 +14,7 @@ public class Main {
 		a.add(335);
 		System.out.println(a);
 	}
-	
-	
 }
+
+
 

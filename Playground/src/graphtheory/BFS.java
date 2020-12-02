@@ -11,6 +11,10 @@ public class BFS {
 	private static boolean[] visited;
 	private static boolean[] enqueued;
 	
+	/**
+	 * @param adj Adjacency list of the graph.
+	 * @return The preorder BFS traversal of the graph as a string. 
+	 */
 	public static String run(LinkedList<Integer>[] adj) {
 		for (LinkedList<Integer> nborhood : adj) {
 			Collections.sort(nborhood);

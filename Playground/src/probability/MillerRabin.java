@@ -2,7 +2,11 @@ package probability;
 
 import java.util.Random;
 
-// use n <= 30,larger values cause overflow
+/**
+ * @author Sarp Suemer
+ * 
+ * @implNote The MillerRabin prime number test.
+ */
 public class MillerRabin {
 	
 	private static Random randomgen = new Random();
@@ -38,6 +42,14 @@ public class MillerRabin {
 		return false;
 	}
 	
+	/**
+	 * @param delta Success probability the user wishes to have.
+	 * @param n Number to be checked for primality.
+	 * @return True if n is prime,false otherwise.
+	 * 
+	 * @implNote This is a Monte-Carlo algorithm.Use larger values of delta for safe results.
+	 * Does not work for n > 30 because of overflow reasons.
+	 */
 	public static boolean test(double delta,int n) {
 		int N = (int) Math.ceil((4 * Math.log(1 / delta)));
 		for (int i = 0; i < N; i++) {

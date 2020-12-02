@@ -2,8 +2,9 @@ package probability;
 
 import java.util.Random;
 
-import sorts.AdvancedSorts;
+import sorts.Tools;
 
+// Algorithmen und Wahrscheinlichkeit Aufgabe 8 FS20
 public class Median {
 	
 	private Random randomgen = new Random();
@@ -21,7 +22,7 @@ public class Median {
 			throw new IllegalArgumentException("Amount must be odd");
 		}
 		Integer[] b = pick(amount);
-		return AdvancedSorts.quickSelect(b, b.length / 2);
+		return (int) Tools.quickSelect(b, b.length / 2);
 	}
 	
 	public Integer[] pick(int amount) {

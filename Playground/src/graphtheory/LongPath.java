@@ -10,8 +10,17 @@ public class LongPath {
 	private static HashSet<HashSet<Integer>>[][] DP;
 	private static int[] color;
 	
-	
+	/**
+	 * @param adj Adjacency list of the graph.
+	 * @param k Length of the path being searched.
+	 * @param p The success probability the user wishes to have,larger values increase running time.Must be between 0 and 1.
+	 * @return True if the graph contains a path of length k,false otherwise.
+	 * 
+	 * @implNote This is a Monte-Carlo algorithm.The user should enter values near 1 for p to ensure correct results.
+	 */
 	public static boolean find(LinkedList<Integer>[] adj,int k,double p) {
+		assert p > 0: "Success probability must be positive";
+		assert p < 1: "Success probability can not be 1";
 		int repeat = (int) (Math.ceil(-Math.log(p) * Math.exp(k)));
 		for (int i = 0; i < repeat; i++) {
 			if (runOnce(adj,k)) {

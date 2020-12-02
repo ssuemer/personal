@@ -48,6 +48,13 @@ public class MinimalCut {
 		return v1(adjc,n,1);
 	}
 	
+	/**
+	 * @param adj Adjacency list of the graph.
+	 * @param lambda Probability of success the user wishes to have.Larger values increase running time.Must be between 0 and 1.
+	 * @return The size of a minimal cut,that is,the minimal number of edges that have to be removed to make the graph disconnected.
+	 * 
+	 * @implNote This is a Monte-Carlo algorithm.The user should enter values near 1 for safer computations.
+	 */
 	public static int v2(LinkedList<Integer>[] adj,double lambda) {
 		int N = (int) Math.ceil(lambda * adj.length * (adj.length - 1) * 0.5);
 		int res = Integer.MAX_VALUE;

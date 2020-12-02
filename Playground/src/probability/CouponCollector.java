@@ -1,14 +1,22 @@
 package probability;
 
+/**
+ * 
+ * @author Sarp Suemer 17.07.2020
+ * Simulates the coupon collector process with n coupons and calculates
+ * the expected value of time steps to collect all coupons.
+ */
 public class CouponCollector extends AbstractSimulation {
 	
 	private int n;
-	
 	
 	public CouponCollector(int n) {
 		this.n = n;
 	}
 
+	/**
+	 * Simulates the coupon collector process once and returns the number of steps executed.
+	 */
 	@Override
 	protected int simulateOne() {
 		int count = 0;
@@ -25,6 +33,9 @@ public class CouponCollector extends AbstractSimulation {
 		return steps;
 	}
 	
+	/**
+	 * Returns the expected value of a coupon collector experiment theoretically.
+	 */
 	@Override
 	public double calc() {
 		double sum = 0;

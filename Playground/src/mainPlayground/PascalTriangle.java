@@ -4,7 +4,7 @@ public class PascalTriangle {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		printTri(10);
+		printTri(13);
 	}
 	
 	public static void printTri(int n) {

@@ -8,6 +8,10 @@ public class Connected {
 	private static int[] dfs;
 	private static int num;
 	
+	/**
+	 * @param adj Adjacency list of the graph.
+	 * @return True if the graph is connected,false otherwise.
+	 */
 	public static boolean connected(LinkedList<Integer>[] adj) {
 		dfs = new int[adj.length];
 		num = 0;
@@ -25,6 +29,10 @@ public class Connected {
 		}
 	}
 	
+	/**
+	 * @param adj Adjacency list of the graph.
+	 * @return True if the graph is a tree (connected and acyclic),false otherwise.
+	 */
 	public static boolean isTree(LinkedList<Integer>[] adj) {
 		if (!connected(adj)) {
 			return false;
