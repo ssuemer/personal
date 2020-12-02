@@ -77,11 +77,11 @@ public class Tools {
 	 * Generates an integer array filled with
 	 * pseudorandomly generated values.
 	 */
-	public static int[] randomData(int N) {
+	public static int[] randomData(int N,int range) {
 		int[] res = new int[N];
 		
 		for (int i = 0; i < res.length; i++) {
-			res[i] = randomgen.nextInt(100);
+			res[i] = 1 + randomgen.nextInt(range - 1);
 		}
 		
 		return res;

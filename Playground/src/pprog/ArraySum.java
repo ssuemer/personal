@@ -16,4 +16,9 @@ public class ArraySum extends ArrayOperation {
 			res += arr[i];
 		}
 	}
+	
+	@Override
+	public String toString() {
+		return "Summing from " + low + " to " + high; 
+	}
 }

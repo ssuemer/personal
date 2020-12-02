@@ -148,4 +148,22 @@ public class Tools {
 		}
 		return true;
 	}
+	
+	public static CustomVector<Integer> randomIntegerVector(int size) {
+		Integer[] coords = new Integer[size];
+		Random randomgen = new Random();
+		for (int i = 0; i < size; i++) {
+			coords[i] = randomgen.nextInt();
+		}
+		return new CustomVector<Integer>(coords);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static CustomVector<Integer>[] randomIntegerVectorArray(int arraylength,int vectorsize) {
+		CustomVector<Integer>[] res = new CustomVector[arraylength];
+		for (int i = 0; i < arraylength; i++) {
+			res[i] = randomIntegerVector(vectorsize);
+		}
+		return res;
+	}
 }

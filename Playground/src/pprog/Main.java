@@ -1,88 +1,58 @@
 package pprog;
 
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int length = 1_000_000;
-		int numthreads = Runtime.getRuntime().availableProcessors();
-
-		int[] data = Tools.randomData(length);
+		int numThreads = Runtime.getRuntime().availableProcessors();
+		int numTasks = numThreads;
+		int[] randomData = Tools.randomData(1_000_000,200);
 		
 		long startTime = System.nanoTime();
-		Thread[] workers = new Thread[numthreads];
-		ArrayOperation[] tasks = Tools.createTasks(data, numthreads, ArrayOperation.Type.PRIMECOUNT);
-		
-		for (int i = 0; i < workers.length; i++) {
-			workers[i] = new Thread(tasks[i]);
-			workers[i].start();
+		ArrayOperation[] tasks = Tools.createTasks(randomData, numTasks, ArrayOperation.Type.PRIMECOUNT);
+//		for (ArrayOperation task: tasks) {
+//			System.out.println(task);
+//		}
+		ExecutorService exs = Executors.newFixedThreadPool(numThreads);
+		for (ArrayOperation task: tasks) {
+			exs.submit(task);
 		}
 		
-		for (Thread worker : workers) {
-			try {
-				worker.join();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		int parallelresult = 0;
+		
+		exs.shutdown();
+		try {
+			exs.awaitTermination(1, TimeUnit.SECONDS);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
-		int res = 0;
 		for (ArrayOperation task : tasks) {
-			res += task.get();
+			parallelresult += task.res;
 		}
 		long endTime = System.nanoTime();
 		long elapsedNs = endTime - startTime;
 		double elapsedMs = elapsedNs / 1.0e6;
 		
-		System.out.println("Parallel result:   " + res + " found in " + elapsedMs + " ms using " + numthreads + " threads");
+		System.out.println("Parallel result: " + parallelresult + " calculated in " + elapsedMs + " millisecs.");
 		
-		long startTimeSeq = System.nanoTime();
-		
-		int resSeq = 0;
-		for (int i = 0; i < data.length; i++) {
+		long startTime2 = System.nanoTime();
+		int seqresult = 0;
+		for (Integer i: randomData) {
 			if (ArrayPrimeCounter.isPrime(i)) {
-				resSeq++;
+				seqresult++;
 			}
 		}
 		
-		long endTimeSeq = System.nanoTime();
-		long elapsedNsSeq = endTimeSeq - startTimeSeq;
-		double elapsedMsSeq = elapsedNsSeq / 1.0e6;
+		long endTime2 = System.nanoTime();
+		long elapsedNs2 = endTime2 - startTime2;
+		double elapsedMs2 = elapsedNs2 / 1.0e6;
 		
-		System.out.println("Sequential result: " + resSeq + " found in " + elapsedMsSeq + " ms");
-		
-		long startTimeEx = System.nanoTime();
-		ExecutorService ex = Executors.newFixedThreadPool(numthreads);
-		ArrayOperation[] tasksEx = Tools.createTasks(data, numthreads, ArrayOperation.Type.SUM);
-		Future<?>[] results = new Future<?>[numthreads];
-		
-		for (int i = 0; i < tasksEx.length; i++) {
-			results[i] = ex.submit(tasksEx[i]);
-		}
-		
-		int resEx = 0;
-		for (int i = 0; i < tasksEx.length; i++) {
-			try {
-				results[i].get();
-			} catch (InterruptedException | ExecutionException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			resEx += tasksEx[i].get();
-		}
-		
-		ex.shutdown();
-		
-		long endTimeEx = System.nanoTime();
-		long elapsedNsEx = endTimeEx - startTimeEx;
-		double elapsedMsEx = elapsedNsEx / 1.0e6;
-		
-		System.out.println("ES result:   " + resEx + " found in " + elapsedMsEx + " ms using " + numthreads + " threads");
+		System.out.println("Sequential result: " + seqresult + " calculated in " + elapsedMs2 + " millisecs.");
 	}
 }

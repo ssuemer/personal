@@ -21,8 +21,13 @@ public class ArrayPrimeCounter extends ArrayOperation {
 	}
 	
 	public static boolean isPrime (int n) {
-		int sqrt = (int) Math.ceil(Math.sqrt((double) n));
-		for (int j = 2; j <= sqrt; j++) {
+		if (n < 2) {
+			return false;
+		}
+		if (n == 2) {
+			return true;
+		}
+		for (int j = 2; j < n; j++) {
 			if (n % j == 0) {
 				return false;
 			}

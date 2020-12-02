@@ -1,6 +1,8 @@
 package misc;
 
-public class Point2D {
+import java.util.Random;
+
+public class Point2D implements Comparable<Point2D>{
 	
 	public double x;
 	public double y;
@@ -8,6 +10,19 @@ public class Point2D {
 	public Point2D(double x,double y) {
 		this.x = x;
 		this.y = y;
+	}
+	
+	public static Point2D randomPoint() {
+		Random randomgen = new Random();
+		return new Point2D(randomgen.nextInt(),randomgen.nextInt());
+	}
+	
+	public static Point2D[] randomPointArray(int length) {
+		Point2D[] res = new Point2D[length];
+		for (int i = 0; i < length; i++) {
+			res[i] = randomPoint();
+		}
+		return res;
 	}
 	
 	@Override
@@ -26,5 +41,11 @@ public class Point2D {
 	@Override
 	public String toString() {
 		return "(" + x + "," + y + ")";
+	}
+
+	@Override
+	public int compareTo(Point2D o) {
+		// TODO Auto-generated method stub
+		return Double.compare(x * x + y * y, o.x * o.x + o.y * o.y);
 	}
 }

@@ -16,7 +16,7 @@ public class ArtPoint {
 	
 	/**
 	 * @param adj Adjacency list of the graph.
-	 * @param componentsallowed true allows the graph to be disconnected,in that case articulation points are return for each component,
+	 * @param componentsallowed true allows the graph to be disconnected,in that case articulation points are returned for each component,
 	 * otherwise assumes a disconnected graph does not contain any articulation point
 	 * @return
 	 */
