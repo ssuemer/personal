@@ -1,13 +1,18 @@
 package mainPlayground;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Main {
 	
 	public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub
-		System.out.println(Runtime.getRuntime().availableProcessors());
+		ArrayList<Integer> a = new ArrayList<Integer>();
+		a.add(3);
+		a.add(34);
+		a.add(335);
+		System.out.println(a);
 	}
 	
 	
