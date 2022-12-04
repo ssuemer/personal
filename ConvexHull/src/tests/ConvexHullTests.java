@@ -16,6 +16,10 @@ import algorithms.Point2D;
 
 class ConvexHullTests {
 	
+	private String getSep() {
+		return System.getProperty("os.name").equals("Linux") ? "/" : "\\";
+	}
+	
 	@Test
 	void simplelocalrepair() {
 		HashSet<Point2D> points = new HashSet<Point2D>();
@@ -56,8 +60,8 @@ class ConvexHullTests {
 	
 	@Test
 	void gardenofroses_jarviswrap() throws FileNotFoundException {
-		Scanner in = new Scanner(new File("in\\gardenofrosesin.txt"));
-		Scanner out = new Scanner(new File("out\\gardenofrosesout.txt"));
+		Scanner in = new Scanner(new File("in" + getSep() + "gardenofrosesin.txt"));
+		Scanner out = new Scanner(new File("out" + getSep() + "gardenofrosesout.txt"));
 		
 		int t = in.nextInt();
 		for (int i = 0; i < t; i++) {
@@ -72,8 +76,8 @@ class ConvexHullTests {
 	
 	@Test
 	void gardenofroses_localrepair() throws FileNotFoundException {
-		Scanner in = new Scanner(new File("in\\gardenofrosesin.txt"));
-		Scanner out = new Scanner(new File("out\\gardenofrosesout.txt"));
+		Scanner in = new Scanner(new File("in" + getSep() + "gardenofrosesin.txt"));
+		Scanner out = new Scanner(new File("out" + getSep() + "gardenofrosesout.txt"));
 		
 		int t = in.nextInt();
 		for (int i = 0; i < t; i++) {
